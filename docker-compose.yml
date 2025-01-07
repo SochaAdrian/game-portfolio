@@ -1,0 +1,39 @@
+services:
+    # Application Service
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-app
+        ports:
+            - "80:80"
+            - "9000:9000"
+            - "8000:8000"
+            - "8080:8080"
+        depends_on:
+            - db
+        environment:
+            DB_CONNECTION: pgsql
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_DATABASE: empirebuilder
+            DB_USERNAME: empireuser
+            DB_PASSWORD: password
+        volumes:
+            - .env.example:/var/www/html/.env
+
+    # PostgreSQL Service
+    db:
+        image: postgres:15
+        container_name: laravel-db
+        environment:
+            POSTGRES_USER: empireuser
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: empirebuilder
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+
+volumes:
+    db-data:
