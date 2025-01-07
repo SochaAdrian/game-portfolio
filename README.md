@@ -107,4 +107,4 @@ W aplikacji postarałem się użyć jak najwięcej technologii czy wzorców proj
     docker compose up
     ```
    
-4. Aplikacja będzie dostępna pod adresem `http://localhost:8000`.
+4. Aplikacja będzie dostępna pod adresem `http://localhost`.
